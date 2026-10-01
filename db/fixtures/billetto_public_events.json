@@ -1,0 +1,457 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "2022806",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "The Candlelight Club's Halloween Ball",
+      "description": "A Halloween special from London’s award-winning 1920s-themed speakeasy party, with live jazz, cabaret and cocktails in a secret venue filled with candles, where everyone dresses the part.\nNo one liked a fancy dress party more than the racy...",
+      "url": "https://billetto.co.uk/e/the-candlelight-club-s-halloween-ball-tickets-2022806?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/the-candlelight-club-s-halloween-ball-tickets-2022806?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/qplplwrsjqno4uafojdjg636l5j6?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C95%2C2000%2C1125&s=81bc0bf3f9626c723da8f688d663521c",
+      "availability": true,
+      "organiser": {
+        "id": 182919,
+        "name": "Clayton Hartley"
+      },
+      "minimum_price": {
+        "amount_in_cents": 30,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "music",
+        "category_localized": "Music",
+        "subcategory": "blues_jazz",
+        "subcategory_localized": "Jazz",
+        "type": "party",
+        "type_localized": "Party or Social Gathering"
+      },
+      "location": {
+        "location_name": null,
+        "address_line": "A secret ballroom",
+        "address_line_2": null,
+        "city": "London",
+        "postal_code": "",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "macroregion": "London",
+        "region": "Inner London — West",
+        "subregion": "Westminster",
+        "coordinates": {
+          "latitude": 51.5072,
+          "longitude": -0.1276
+        }
+      },
+      "startdate": "2026-10-31T19:00:00Z",
+      "enddate": "2026-11-01T01:00:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    },
+    {
+      "id": "2022461",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Baby Knees Up Christmas Family Concert - Walthamstow",
+      "description": "\"Loved it! Will recommend to others. Thank you. Feel very festive now\" - audience member\n\nCor Blimey, Guv’nor, it’s a good old-fashioned FESTIVE knees up!\nFancy a change from Christmas carols? Grab your basin of gravy 👶 and your dustbin lid...",
+      "url": "https://billetto.co.uk/e/baby-knees-up-christmas-family-concert-walthamstow-tickets-2022461?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/baby-knees-up-christmas-family-concert-walthamstow-tickets-2022461?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/xaviiehzc9vrggbx2frjijliaxrw?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C35%2C1600%2C900&s=5ef98974971fae8670c751a50b478869",
+      "availability": true,
+      "organiser": {
+        "id": 6004798,
+        "name": "Baby Knees Up"
+      },
+      "minimum_price": {
+        "amount_in_cents": 14,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "family",
+        "category_localized": "Family & Education",
+        "subcategory": "baby",
+        "subcategory_localized": "Baby",
+        "type": "concert",
+        "type_localized": "Concert or Performance"
+      },
+      "location": {
+        "location_name": "Big Penny Social",
+        "address_line": "1 Priestley Way",
+        "address_line_2": null,
+        "city": "London",
+        "postal_code": "E17 6AL",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "macroregion": "London",
+        "region": "Outer London — East and North East",
+        "subregion": "Redbridge and Waltham Forest",
+        "coordinates": {
+          "latitude": 51.5906,
+          "longitude": -0.0415
+        }
+      },
+      "startdate": "2026-12-11T11:00:00Z",
+      "enddate": "2026-12-11T11:45:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    },
+    {
+      "id": "2022460",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Baby Broadway Christmas family concert - Walthamstow",
+      "description": "A joyful live music festive experience with West End singers for babies, kids + grown-ups!",
+      "url": "https://billetto.co.uk/e/baby-broadway-christmas-family-concert-walthamstow-tickets-2022460?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/baby-broadway-christmas-family-concert-walthamstow-tickets-2022460?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/9dc241odawzuj4r69rpcozihfwrb?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C39%2C1600%2C900&s=25f9795e0a7f8c71ea2cd34f1b07c2d1",
+      "availability": true,
+      "organiser": {
+        "id": 929682,
+        "name": "Baby Broadway Family Concerts"
+      },
+      "minimum_price": {
+        "amount_in_cents": 15,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "seasonal",
+        "category_localized": "Seasonal & Holiday",
+        "subcategory": "christmas",
+        "subcategory_localized": "Christmas",
+        "type": "concert",
+        "type_localized": "Concert or Performance"
+      },
+      "location": {
+        "location_name": "Big Penny Social",
+        "address_line": "1 Priestley Way",
+        "address_line_2": null,
+        "city": "London",
+        "postal_code": "E17 6AL",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "macroregion": "London",
+        "region": "Outer London — East and North East",
+        "subregion": "Redbridge and Waltham Forest",
+        "coordinates": {
+          "latitude": 51.5906,
+          "longitude": -0.0415
+        }
+      },
+      "startdate": "2026-12-17T11:15:00Z",
+      "enddate": "2026-12-17T12:00:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    },
+    {
+      "id": "2021972",
+      "object": "public_event",
+      "kind": "scheduled",
+      "state": "published",
+      "title": "7th International Virtual Conference on Neuroscience, Brain Disorders & Therapeutics",
+      "description": "Neuroscience Virtual Meeting 2027 will help you in connecting, sharing and uniting your ideas with peers from all over the world related to Neuroscience, Brain Disorders & Therapeutics. It also aims to foster and conduct collaborative inter...",
+      "url": "https://billetto.co.uk/e/7th-international-virtual-conference-on-neuroscience-brain-disorders-therapeutics-tickets-2021972?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/7th-international-virtual-conference-on-neuroscience-brain-disorders-therapeutics-tickets-2021972?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/8ynzt7rpwibeuqqvoveef3656xw3?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C274%2C1254%2C705&s=bc21eb98bc46e8cca7aaa398a0bfed9f",
+      "availability": true,
+      "organiser": {
+        "id": 7437616,
+        "name": "Research Wave International"
+      },
+      "minimum_price": {
+        "amount_in_cents": 59,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "health_wellness",
+        "category_localized": "Health & Wellness",
+        "subcategory": "mental_health",
+        "subcategory_localized": "Mental health",
+        "type": "conference",
+        "type_localized": "Conference"
+      },
+      "location": {
+        "location_name": null,
+        "address_line": null,
+        "address_line_2": null,
+        "city": null,
+        "postal_code": null,
+        "country": null,
+        "country_code": "GB",
+        "macroregion": null,
+        "region": null,
+        "subregion": null,
+        "coordinates": {
+          "latitude": null,
+          "longitude": null
+        }
+      },
+      "startdate": "2027-01-30T09:00:00Z",
+      "enddate": "2027-01-30T18:00:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    },
+    {
+      "id": "2021894",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Baby Gospel Christmas family concert - Bromley",
+      "description": "Festive gospel, soul & Christmas favourites for babies, kids and grown-ups!",
+      "url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-bromley-tickets-2021894?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-bromley-tickets-2021894?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/gck39sl6cj1drqaosoa6lzrr4is4?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C50%2C1600%2C900&s=6892658ff1278a90ea2dab9e36995202",
+      "availability": true,
+      "organiser": {
+        "id": 6004640,
+        "name": "Baby Gospel"
+      },
+      "minimum_price": {
+        "amount_in_cents": 16,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "seasonal",
+        "category_localized": "Seasonal & Holiday",
+        "subcategory": "christmas",
+        "subcategory_localized": "Christmas",
+        "type": "concert",
+        "type_localized": "Concert or Performance"
+      },
+      "location": {
+        "location_name": "Bromley Town Church",
+        "address_line": "2 Ethelbert Rd",
+        "address_line_2": null,
+        "city": "Bromley",
+        "postal_code": "BR1 1JA",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "macroregion": "London",
+        "region": "Outer London — South",
+        "subregion": "Bromley",
+        "coordinates": {
+          "latitude": 51.4025,
+          "longitude": 0.0148
+        }
+      },
+      "startdate": "2026-12-13T15:30:00Z",
+      "enddate": "2026-12-13T16:15:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    },
+    {
+      "id": "2021891",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Baby Gospel Christmas family concert - Clapham",
+      "description": "Festive gospel, soul & Christmas favourites for babies, kids and grown-ups!",
+      "url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-clapham-tickets-2021891?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-clapham-tickets-2021891?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/gck39sl6cj1drqaosoa6lzrr4is4?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C50%2C1600%2C900&s=6892658ff1278a90ea2dab9e36995202",
+      "availability": true,
+      "organiser": {
+        "id": 6004640,
+        "name": "Baby Gospel"
+      },
+      "minimum_price": {
+        "amount_in_cents": 6,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "seasonal",
+        "category_localized": "Seasonal & Holiday",
+        "subcategory": "christmas",
+        "subcategory_localized": "Christmas",
+        "type": "concert",
+        "type_localized": "Concert or Performance"
+      },
+      "location": {
+        "location_name": "The Clapham Grand",
+        "address_line": "The Clapham Grand",
+        "address_line_2": null,
+        "city": "London",
+        "postal_code": "SW11 1TT",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "macroregion": "London",
+        "region": "Inner London — West",
+        "subregion": "Wandsworth",
+        "coordinates": {
+          "latitude": 51.4631,
+          "longitude": -0.1694
+        }
+      },
+      "startdate": "2026-12-13T11:00:00Z",
+      "enddate": "2026-12-13T11:45:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    },
+    {
+      "id": "2021888",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Baby Gospel Christmas family concert - Crystal Palace",
+      "description": "Festive gospel, soul & Christmas favourites for babies, kids and grown-ups!",
+      "url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-crystal-palace-tickets-2021888?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-crystal-palace-tickets-2021888?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/gck39sl6cj1drqaosoa6lzrr4is4?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C50%2C1600%2C900&s=6892658ff1278a90ea2dab9e36995202",
+      "availability": true,
+      "organiser": {
+        "id": 6004640,
+        "name": "Baby Gospel"
+      },
+      "minimum_price": {
+        "amount_in_cents": 16,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "seasonal",
+        "category_localized": "Seasonal & Holiday",
+        "subcategory": "christmas",
+        "subcategory_localized": "Christmas",
+        "type": "concert",
+        "type_localized": "Concert or Performance"
+      },
+      "location": {
+        "location_name": "St Paul's Church, Anerley",
+        "address_line": "8 Hamlet Rd",
+        "address_line_2": null,
+        "city": "London",
+        "postal_code": "SE19 2AW",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "macroregion": "London",
+        "region": "Outer London — South",
+        "subregion": "Bromley",
+        "coordinates": {
+          "latitude": 51.416,
+          "longitude": -0.0731
+        }
+      },
+      "startdate": "2026-12-09T16:00:00Z",
+      "enddate": "2026-12-09T16:45:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    },
+    {
+      "id": "2021884",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Baby Gospel Christmas family concert - Stoke Newington (11.30am)",
+      "description": "Festive gospel, soul & Christmas favourites for babies, kids and grown-ups!",
+      "url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-stoke-newington-11-30am-tickets-2021884?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.co.uk/e/baby-gospel-christmas-family-concert-stoke-newington-11-30am-tickets-2021884?utm_campaign=websites&utm_content=GB+7443350&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/gck39sl6cj1drqaosoa6lzrr4is4?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C50%2C1600%2C900&s=6892658ff1278a90ea2dab9e36995202",
+      "availability": true,
+      "organiser": {
+        "id": 6004640,
+        "name": "Baby Gospel"
+      },
+      "minimum_price": {
+        "amount_in_cents": 16,
+        "currency": "GBP"
+      },
+      "categorization": {
+        "category": "seasonal",
+        "category_localized": "Seasonal & Holiday",
+        "subcategory": "christmas",
+        "subcategory_localized": "Christmas",
+        "type": "concert",
+        "type_localized": "Concert or Performance"
+      },
+      "location": {
+        "location_name": "The Old Church",
+        "address_line": "Stoke Newington Church St",
+        "address_line_2": null,
+        "city": "London",
+        "postal_code": "N16 9ES",
+        "country": "United Kingdom",
+        "country_code": "GB",
+        "macroregion": "London",
+        "region": "Inner London — East",
+        "subregion": "Hackney and Newham",
+        "coordinates": {
+          "latitude": 51.5611,
+          "longitude": -0.0845
+        }
+      },
+      "startdate": "2026-12-07T11:30:00Z",
+      "enddate": "2026-12-07T12:15:00Z",
+      "organization": {
+        "id": 58,
+        "domain": "billetto.co.uk"
+      },
+      "headliners": {
+        "object": "list",
+        "data": [],
+        "has_more": false,
+        "total": 0
+      }
+    }
+  ],
+  "has_more": true,
+  "total": 402,
+  "url": "https://billetto.co.uk/api/v3/public/events?limit=8",
+  "next_url": "https://billetto.co.uk/api/v3/public/events?after=2021884&limit=8"
+}

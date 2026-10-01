@@ -37,6 +37,10 @@ Rails.application.configure do
   # was scheduled and then run it explicitly with perform_enqueued_jobs.
   config.active_job.queue_adapter = :test
 
+  # Third-party integrations are replaced by fakes here rather than stubbed at
+  # the HTTP level, so the suite exercises a seam this codebase owns.
+  config.x.billetto.use_fake_adapter = true
+
   # Disable caching for Action Mailer templates even if Action Controller
   # caching is enabled.
 
