@@ -16,6 +16,13 @@ gem "importmap-rails"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
+# Background processing for event handlers, so side effects stay off the
+# request path.
+gem "sidekiq", "~> 7.3"
+
+# Event sourcing. The whole voting feature is built on this.
+gem "rails_event_store", "~> 2.17"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
