@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_10_01_133348) do
+ActiveRecord::Schema[7.2].define(version: 2026_10_02_062525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,6 +37,31 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_01_133348) do
     t.index ["event_id"], name: "index_event_store_events_in_streams_on_event_id"
     t.index ["stream", "event_id"], name: "index_event_store_events_in_streams_on_stream_and_event_id", unique: true
     t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "tid", null: false
+    t.string "external_id", null: false
+    t.string "title", null: false
+    t.text "description"
+    t.string "image_url"
+    t.string "event_url"
+    t.datetime "starts_at", null: false
+    t.datetime "ends_at"
+    t.string "state"
+    t.string "kind"
+    t.boolean "available"
+    t.string "organiser_name"
+    t.string "venue_name"
+    t.string "category"
+    t.integer "minimum_price_cents"
+    t.string "currency"
+    t.string "payload_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["external_id"], name: "index_events_on_external_id", unique: true
+    t.index ["starts_at"], name: "index_events_on_starts_at"
+    t.index ["tid"], name: "index_events_on_tid", unique: true
   end
 
   add_foreign_key "event_store_events_in_streams", "event_store_events", column: "event_id", primary_key: "event_id"
