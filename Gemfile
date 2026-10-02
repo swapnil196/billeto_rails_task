@@ -21,6 +21,10 @@ gem "importmap-rails"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
+# Verifying Clerk session tokens. Clerk signs them RS256 and publishes a JWKS;
+# this verifies locally rather than calling Clerk on every request.
+gem "jwt", "~> 2.9"
+
 # Background processing for event handlers, so side effects stay off the
 # request path.
 gem "sidekiq", "~> 7.3"

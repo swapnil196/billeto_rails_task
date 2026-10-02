@@ -1,0 +1,12 @@
+<div class="session">
+  <% if signed_in? %>
+    <span class="session__who">Signed in as <code><%= current_user_id %></code></span>
+    <%= button_to "Sign out", dev_session_path, method: :delete, class: "btn btn--quiet" %>
+  <% else %>
+    <%= form_with url: dev_session_path, method: :post, class: "session__form" do |form| %>
+      <%= form.label :user_id, "Sign in as", class: "session__label" %>
+      <%= form.text_field :user_id, value: "user_demo", class: "session__input" %>
+      <%= form.submit "Sign in", class: "btn" %>
+    <% end %>
+  <% end %>
+</div>

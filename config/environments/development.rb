@@ -46,6 +46,9 @@ Rails.application.configure do
   # Print deprecation notices to the Rails logger.
   config.active_job.queue_adapter = :sidekiq
 
+  # Lets you sign in without a Clerk instance while developing locally.
+  config.x.clerk.dev_sign_in = true
+
   config.active_support.deprecation = :log
 
   # Raise exceptions for disallowed deprecations.

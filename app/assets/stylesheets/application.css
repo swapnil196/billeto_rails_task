@@ -60,3 +60,82 @@ code {
   .event { flex-direction: column; }
   .event__image { width: 100%; height: 10rem; }
 }
+
+/* --- session + voting --- */
+
+.page-header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.session { display: flex; align-items: center; gap: .5rem; font-size: .875rem; }
+.session__form { display: flex; align-items: center; gap: .4rem; }
+.session__label { color: var(--muted); }
+.session__who { color: var(--muted); }
+
+.session__input {
+  width: 9rem;
+  padding: .3rem .45rem;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  font: inherit;
+}
+
+.btn {
+  padding: .35rem .7rem;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  background: #f9fafb;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn:hover { background: #f3f4f6; }
+.btn--quiet { color: var(--muted); }
+
+.flash {
+  margin: 0 0 1rem;
+  padding: .6rem .8rem;
+  border-radius: .35rem;
+  font-size: .9rem;
+}
+
+.flash--alert { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+.vote {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  margin-left: auto;
+  flex: none;
+}
+
+/* button_to renders a form; stop it adding vertical rhythm of its own. */
+.vote form { margin: 0; }
+
+.vote__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  min-width: 4rem;
+  padding: .3rem .55rem;
+  border: 1px solid var(--line);
+  border-radius: .3rem;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-size: .875rem;
+  cursor: pointer;
+}
+
+.vote__btn:hover { background: #f9fafb; }
+.vote__btn--on { border-color: var(--accent); color: var(--accent); background: #eff6ff; }
+.vote__btn--readonly { cursor: default; color: var(--muted); background: #fafafa; }
+.vote__count { font-variant-numeric: tabular-nums; }
+
+@media (max-width: 36rem) {
+  .vote { flex-direction: row; margin-left: 0; }
+}

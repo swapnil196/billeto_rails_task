@@ -9,6 +9,9 @@ class ApplicationSubscriptions
 
   def handlers
     [
+      Catalog.subscriptions,
+      Voting.subscriptions,
+      ReadModels::EventVoteTally.subscriptions
     ].reduce({}) { |merged, subscriptions| merge(merged, subscriptions) }
   end
 

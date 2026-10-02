@@ -1,0 +1,28 @@
+<%
+  tally = @tallies[event.tid]
+  ups = tally&.ups.to_i
+  downs = tally&.downs.to_i
+  mine = @my_votes[event.tid]
+%>
+<div class="vote" data-event-tid="<%= event.tid %>">
+  <% if signed_in? %>
+    <%= button_to event_vote_path(event_tid: event.tid, direction: "up"),
+                  class: "vote__btn #{'vote__btn--on' if mine&.up?}",
+                  aria: { label: "Like #{event.title}" } do %>
+      &#9650; <span class="vote__count" data-role="ups"><%= ups %></span>
+    <% end %>
+
+    <%= button_to event_vote_path(event_tid: event.tid, direction: "down"),
+                  class: "vote__btn #{'vote__btn--on' if mine&.down?}",
+                  aria: { label: "Dislike #{event.title}" } do %>
+      &#9660; <span class="vote__count" data-role="downs"><%= downs %></span>
+    <% end %>
+  <% else %>
+    <span class="vote__btn vote__btn--readonly" title="Sign in to vote">
+      &#9650; <span class="vote__count" data-role="ups"><%= ups %></span>
+    </span>
+    <span class="vote__btn vote__btn--readonly" title="Sign in to vote">
+      &#9660; <span class="vote__count" data-role="downs"><%= downs %></span>
+    </span>
+  <% end %>
+</div>

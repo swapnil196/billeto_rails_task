@@ -1,11 +1,19 @@
 <% content_for :title, "Events" %>
 
 <header class="page-header">
-  <h1>What's on</h1>
-  <p class="muted">
-    <%= pluralize(@events.size, "upcoming event") %>, mirrored from Billetto.
-  </p>
+  <div>
+    <h1>What's on</h1>
+    <p class="muted">
+      <%= pluralize(@events.size, "upcoming event") %>, mirrored from Billetto.
+    </p>
+  </div>
+
+  <%= render "shared/session" %>
 </header>
+
+<% if flash[:alert] %>
+  <p class="flash flash--alert"><%= flash[:alert] %></p>
+<% end %>
 
 <% if @events.empty? %>
   <p class="empty">
@@ -40,6 +48,8 @@
             <p class="event__description"><%= truncate(event.description, length: 220, separator: " ") %></p>
           <% end %>
         </div>
+
+        <%= render "events/vote", event: event %>
       </li>
     <% end %>
   </ul>

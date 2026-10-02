@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_10_02_062525) do
+ActiveRecord::Schema[7.2].define(version: 2026_10_02_070049) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -39,6 +39,15 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_02_062525) do
     t.index ["stream", "position"], name: "index_event_store_events_in_streams_on_stream_and_position", unique: true
   end
 
+  create_table "event_vote_tallies", force: :cascade do |t|
+    t.string "event_tid", null: false
+    t.integer "ups", default: 0, null: false
+    t.integer "downs", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_tid"], name: "index_event_vote_tallies_on_event_tid", unique: true
+  end
+
   create_table "events", force: :cascade do |t|
     t.string "tid", null: false
     t.string "external_id", null: false
@@ -62,6 +71,23 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_02_062525) do
     t.index ["external_id"], name: "index_events_on_external_id", unique: true
     t.index ["starts_at"], name: "index_events_on_starts_at"
     t.index ["tid"], name: "index_events_on_tid", unique: true
+  end
+
+  create_table "processed_facts", force: :cascade do |t|
+    t.string "handler", null: false
+    t.string "event_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["handler", "event_id"], name: "index_processed_facts_on_handler_and_event_id", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.string "event_tid", null: false
+    t.string "user_id", null: false
+    t.string "direction", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_tid", "user_id"], name: "index_votes_on_event_tid_and_user_id", unique: true
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
   add_foreign_key "event_store_events_in_streams", "event_store_events", column: "event_id", primary_key: "event_id"
