@@ -11,11 +11,11 @@ RSpec.describe Billetto::Adapter do
 
   describe "#each_public_event" do
     it "follows the cursor until has_more goes false" do
-      http = BillettoStubHttp.new(
-        first_url => BillettoStubHttp.json({
+      http = StubHttpClient.new(
+        first_url => StubHttpClient.json({
           "data" => [ event("1"), event("2") ], "has_more" => true, "next_url" => second_url
         }),
-        second_url => BillettoStubHttp.json({
+        second_url => StubHttpClient.json({
           "data" => [ event("3") ], "has_more" => false, "next_url" => nil
         })
       )
@@ -28,8 +28,8 @@ RSpec.describe Billetto::Adapter do
     end
 
     it "sends the keypair header on every request" do
-      http = BillettoStubHttp.new(
-        first_url => BillettoStubHttp.json({ "data" => [ event("1") ], "has_more" => false })
+      http = StubHttpClient.new(
+        first_url => StubHttpClient.json({ "data" => [ event("1") ], "has_more" => false })
       )
       adapter = described_class.new(api_keypair: "key:secret", base_url: base_url, page_size: 2, http: http)
 
@@ -39,8 +39,8 @@ RSpec.describe Billetto::Adapter do
     end
 
     it "stops fetching once the limit is reached" do
-      http = BillettoStubHttp.new(
-        first_url => BillettoStubHttp.json({
+      http = StubHttpClient.new(
+        first_url => StubHttpClient.json({
           "data" => [ event("1"), event("2") ], "has_more" => true, "next_url" => second_url
         })
       )
@@ -51,8 +51,8 @@ RSpec.describe Billetto::Adapter do
     end
 
     it "stops when has_more is true but no next_url is given" do
-      http = BillettoStubHttp.new(
-        first_url => BillettoStubHttp.json({
+      http = StubHttpClient.new(
+        first_url => StubHttpClient.json({
           "data" => [ event("1") ], "has_more" => true, "next_url" => nil
         })
       )
@@ -68,19 +68,19 @@ RSpec.describe Billetto::Adapter do
         api_keypair: "k:s",
         base_url: base_url,
         page_size: 2,
-        http: BillettoStubHttp.new(first_url => response)
+        http: StubHttpClient.new(first_url => response)
       )
     end
 
     it "raises AuthenticationFailed on a 401" do
-      adapter = adapter_for(BillettoStubHttp.json({ "error" => "nope" }, status: 401))
+      adapter = adapter_for(StubHttpClient.json({ "error" => "nope" }, status: 401))
 
       expect { adapter.each_public_event.to_a }
         .to raise_error(Billetto::AuthenticationFailed)
     end
 
     it "raises AuthenticationFailed when the error arrives in the body with a 200" do
-      adapter = adapter_for(BillettoStubHttp.json({
+      adapter = adapter_for(StubHttpClient.json({
         "error" => { "message" => "Invalid credentials", "type" => "authentication_error" }
       }))
 
@@ -89,14 +89,25 @@ RSpec.describe Billetto::Adapter do
     end
 
     it "raises RequestFailed on a server error" do
-      adapter = adapter_for(BillettoStubHttp.json({ "error" => "boom" }, status: 503))
+      adapter = adapter_for(StubHttpClient.json({ "error" => "boom" }, status: 503))
 
       expect { adapter.each_public_event.to_a }
         .to raise_error(Billetto::RequestFailed, /503/)
     end
 
+    it "translates a transport failure into Billetto's own error" do
+      http = Object.new
+      http.define_singleton_method(:get) do |_url, headers: {}|
+        raise HttpClient::TransportError, "GET failed: Timeout::Error"
+      end
+      adapter = described_class.new(api_keypair: "k:s", base_url: base_url, page_size: 2, http: http)
+
+      expect { adapter.each_public_event.to_a }
+        .to raise_error(Billetto::RequestFailed, /Timeout::Error/)
+    end
+
     it "raises RequestFailed when the body is not JSON" do
-      adapter = adapter_for(BillettoStubHttp.raw("<html>nope</html>"))
+      adapter = adapter_for(StubHttpClient.raw("<html>nope</html>"))
 
       expect { adapter.each_public_event.to_a }
         .to raise_error(Billetto::RequestFailed, /unreadable body/)

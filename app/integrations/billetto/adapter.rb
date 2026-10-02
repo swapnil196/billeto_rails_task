@@ -9,7 +9,7 @@ module Billetto
 
     MAX_PAGES = 500
 
-    def initialize(api_keypair:, base_url: DEFAULT_BASE_URL, page_size: DEFAULT_PAGE_SIZE, http: Http.new)
+    def initialize(api_keypair:, base_url: DEFAULT_BASE_URL, page_size: DEFAULT_PAGE_SIZE, http: HttpClient.new)
       if api_keypair.blank?
         raise ConfigurationError, "Billetto API keypair is missing"
       end
@@ -48,10 +48,7 @@ module Billetto
     end
 
     def fetch(url)
-      response = @http.get(url, headers: {
-        "Api-Keypair" => @api_keypair,
-        "Accept" => "application/json"
-      })
+      response = get(url)
 
       raise AuthenticationFailed, "Billetto rejected the credentials" if response.status == 401
       raise RequestFailed, "Billetto returned #{response.status} for #{url}" unless response.success?
@@ -59,6 +56,17 @@ module Billetto
       body = parse(response.body)
       raise_if_error_envelope(body)
       body
+    end
+
+    # The shared transport raises one error for every network failure; naming
+    # it in Billetto's own vocabulary is this layer's job.
+    def get(url)
+      @http.get(url, headers: {
+        "Api-Keypair" => @api_keypair,
+        "Accept" => "application/json"
+      })
+    rescue HttpClient::TransportError => exception
+      raise RequestFailed, exception.message
     end
 
     def parse(body)

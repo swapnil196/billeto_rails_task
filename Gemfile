@@ -6,6 +6,11 @@ ruby file: ".ruby-version"
 gem "rails", "~> 7.2.2", ">= 7.2.2.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
+# Rails 7.2 still calls JSON.generate(..., quirks_mode: true), which json 3.x
+# removed; on json 3 every request that writes a session cookie raises
+# ArgumentError. Pinned until Rails supports json 3.
+gem "json", "~> 2.7"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]

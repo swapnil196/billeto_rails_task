@@ -1,0 +1,46 @@
+<% content_for :title, "Events" %>
+
+<header class="page-header">
+  <h1>What's on</h1>
+  <p class="muted">
+    <%= pluralize(@events.size, "upcoming event") %>, mirrored from Billetto.
+  </p>
+</header>
+
+<% if @events.empty? %>
+  <p class="empty">
+    Nothing here yet. Run <code>bin/rails catalog:import</code> to pull events in.
+  </p>
+<% else %>
+  <ul class="events">
+    <% @events.each do |event| %>
+      <li class="event">
+        <% if event.image_url.present? %>
+          <img class="event__image" src="<%= event.image_url %>" alt="" loading="lazy">
+        <% else %>
+          <div class="event__image event__image--placeholder" aria-hidden="true"></div>
+        <% end %>
+
+        <div class="event__body">
+          <h2 class="event__title"><%= event.title %></h2>
+
+          <p class="event__meta">
+            <time datetime="<%= event.starts_at.iso8601 %>">
+              <%= event.starts_at.strftime("%a %-d %b %Y, %H:%M") %>
+            </time>
+            <% if event.venue_name.present? %>
+              &middot; <%= event.venue_name %>
+            <% end %>
+            <% if event.category.present? %>
+              &middot; <%= event.category %>
+            <% end %>
+          </p>
+
+          <% if event.description.present? %>
+            <p class="event__description"><%= truncate(event.description, length: 220, separator: " ") %></p>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
