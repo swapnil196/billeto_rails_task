@@ -36,8 +36,9 @@ Either environment variables, which take precedence:
 
 ```bash
 export BILLETTO_API_KEYPAIR="key:secret"
-export CLERK_JWKS_URL="https://<your-instance>.clerk.accounts.dev/.well-known/jwks.json"
-export CLERK_AUTHORIZED_PARTIES="https://your-app.example"   # optional
+export CLERK_PUBLISHABLE_KEY="pk_test_..."
+export CLERK_SECRET_KEY="sk_test_..."
+export CLERK_FRONTEND_API="https://<your-instance>.clerk.accounts.dev"
 ```
 
 Or Rails credentials (`bin/rails credentials:edit`), under `billetto:` and
@@ -46,6 +47,37 @@ Or Rails credentials (`bin/rails credentials:edit`), under `billetto:` and
 > Billetto's keypair is a single header — `Api-Keypair: KEY:SECRET` — issued
 > from an **Organiser** account. `list-public-events` belongs to their
 > partner-gated Public Event API, so a fresh account may not have access.
+
+### Rails Event Store setup
+
+Already done in this repo; recorded here because reproducing it from scratch is
+four steps and none of them are guessable.
+
+**1. The gem** — `gem "rails_event_store", "~> 2.17"`.
+
+**2. The tables.** `--data-type=jsonb` matters: it keeps payloads queryable in
+SQL instead of storing them as an opaque serialised blob.
+
+```bash
+bin/rails generate rails_event_store_active_record:migration --data-type=jsonb
+bin/rails db:migrate
+```
+
+**3. The client** — `config/initializers/rails_event_store.rb`, delegating to
+`ApplicationEventStore.build`, which pairs `RailsEventStore::JSONClient` (to
+match the jsonb columns) with a broker whose dispatcher composes
+`AfterCommitDispatcher` and `SyncScheduler`. Two details are easy to get wrong
+and silently damaging:
+
+- **`AfterCommitDispatcher`.** Scheduling a job inside the transaction lets a
+  worker pick it up before — or despite — the commit, and react to something
+  that never happened.
+- **`serializer: JSON` on both sides.** The scheduler and the handlers must
+  agree, or jobs serialise one way and deserialise another.
+
+**4. Subscriptions.** Handlers are registered in one place,
+`lib/application_subscriptions.rb`, so "what reacts to this fact?" is a file to
+read rather than a grep for `subscribe` calls.
 
 ### Testing
 
@@ -57,6 +89,13 @@ bundle exec rubocop
 System specs run on `rack_test` by default. `spec/system/voting_js_spec.rb`
 runs the same journey in real headless Chrome; Selenium Manager fetches a
 matching driver, so there is nothing to install.
+
+Specs tagged `:external` reach a real third-party service and are **excluded by
+default**, so the suite stays runnable offline:
+
+```bash
+bundle exec rspec --tag external   # drives the live Clerk components
+```
 
 ## How it fits together
 
@@ -171,11 +210,24 @@ seam this codebase owns.
 The application learns nothing about a person beyond an opaque Clerk user id —
 no users table, no mirrored email, no password.
 
-Verification is local: Clerk signs tokens RS256 and publishes a JWKS, which is
-cached, so tokens are checked without calling Clerk on every request. An
-unrecognised key id forces exactly one refresh, which is how rotation is meant
-to be noticed, and `sub` is read only after the signature verifies. A token the
-verifier rejects means "not signed in", not an error.
+Clerk's official Ruby SDK does the work, through its Rack middleware, with
+Clerk's own JavaScript components for sign-up, sign-in and sign-out. Using the
+vendor's SDK beats a hand-rolled verifier here: token format, key rotation and
+session refresh are their problem to keep correct, and they change them without
+asking.
+
+Identifying a visitor costs no network call — `clerk.user_id` reads the subject
+off claims the middleware has already verified. `clerk.user` is the call that
+would reach Clerk's API, and nothing here needs it. A session Clerk refuses
+means "not signed in", never an error: a stale cookie in a reopened tab should
+not break the page.
+
+The middleware is mounted explicitly in `config/application.rb` rather than by
+the gem's Railtie, because the test environment swaps in `ClerkTestMiddleware`.
+That stand-in builds the same `Clerk::Proxy` from a cookie whose value is just
+a user id, so controllers, the `clerk` helper and every guard run the same code
+they run in production — without a secret key in CI or a network call per
+example.
 
 ## Assumptions
 
@@ -189,9 +241,9 @@ verifier rejects means "not signed in", not an error.
   id changes when data is moved or reseeded; a stream name in an append-only
   log is permanent, so it needs an identifier with the same lifetime.
 - **Clerk's hosted screens are out of scope for automated tests.**
-  `DevSessionsController` is the seam for testing what *is* ours — everything
-  downstream of the cookie — and its routes only exist where the fake verifier
-  is configured, which production never is.
+  `DevSessionsController` plus `ClerkTestMiddleware` are the seam for testing
+  what *is* ours — everything downstream of the session. Those routes exist in
+  the test environment only.
 
 ## Deliberately not done
 
