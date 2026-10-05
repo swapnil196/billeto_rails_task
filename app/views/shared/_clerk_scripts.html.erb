@@ -1,0 +1,30 @@
+<% if clerk_configured? && !dev_sign_in? %>
+  <script defer crossorigin="anonymous" src="<%= clerk_ui_url %>"></script>
+  <script defer crossorigin="anonymous"
+          data-clerk-publishable-key="<%= clerk_publishable_key %>"
+          src="<%= clerk_js_url %>"></script>
+
+  <script>
+    // One mount point per page, declared in the markup with data-clerk-mount,
+    // so views stay free of Clerk's JavaScript API.
+    window.addEventListener("load", async function () {
+      if (typeof Clerk === "undefined") return;
+
+      await Clerk.load({ ui: { ClerkUI: window.__internal_ClerkUICtor } });
+
+      document.querySelectorAll("[data-clerk-mount]").forEach(function (el) {
+        switch (el.dataset.clerkMount) {
+          case "sign-in":
+            Clerk.mountSignIn(el, { forceRedirectUrl: "/" });
+            break;
+          case "sign-up":
+            Clerk.mountSignUp(el, { forceRedirectUrl: "/" });
+            break;
+          case "user-button":
+            Clerk.mountUserButton(el, { afterSignOutUrl: "/" });
+            break;
+        }
+      });
+    });
+  </script>
+<% end %>

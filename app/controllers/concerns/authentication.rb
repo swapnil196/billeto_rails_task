@@ -3,33 +3,16 @@
 module Authentication
   extend ActiveSupport::Concern
 
-  # Clerk's frontend SDK writes the session JWT to this cookie.
-  SESSION_COOKIE = "__session"
-
   included do
+    include Clerk::Authenticatable
+
     helper_method :current_user_id, :signed_in?
   end
 
   private
 
-  def clerk_session
-    return @clerk_session if defined?(@clerk_session)
-
-    @clerk_session = verified_session
-  end
-
-  def verified_session
-    token = cookies[SESSION_COOKIE]
-    return nil if token.blank?
-
-    Rails.configuration.clerk_verifier.verify(token)
-  rescue Clerk::VerificationFailed => exception
-    Rails.logger.info("[clerk] rejected session token: #{exception.message}")
-    nil
-  end
-
   def current_user_id
-    clerk_session&.user_id
+    clerk&.user_id
   end
 
   def signed_in?

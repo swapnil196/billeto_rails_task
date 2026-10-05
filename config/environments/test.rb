@@ -40,7 +40,6 @@ Rails.application.configure do
   # Third-party integrations are replaced by fakes here rather than stubbed at
   # the HTTP level, so the suite exercises a seam this codebase owns.
   config.x.billetto.use_fake_adapter = true
-  config.x.clerk.use_fake_verifier = true
   config.x.clerk.dev_sign_in = true
 
   # Disable caching for Action Mailer templates even if Action Controller

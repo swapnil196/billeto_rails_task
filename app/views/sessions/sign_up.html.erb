@@ -1,0 +1,10 @@
+<% content_for :title, "Create an account" %>
+
+<header class="page-header">
+  <div>
+    <h1>Create an account</h1>
+    <p class="muted">Already have one? <%= link_to "Sign in", sign_in_path %>.</p>
+  </div>
+</header>
+
+<div data-clerk-mount="sign-up" class="clerk-mount"></div>

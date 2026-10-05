@@ -2,7 +2,7 @@
 
 class DevSessionsController < ApplicationController
   def create
-    cookies[Authentication::SESSION_COOKIE] = {
+    cookies[ClerkTestMiddleware::COOKIE] = {
       value: params[:user_id].presence || "user_#{SecureRandom.hex(4)}",
       httponly: true,
       same_site: :lax
@@ -12,7 +12,7 @@ class DevSessionsController < ApplicationController
   end
 
   def destroy
-    cookies.delete(Authentication::SESSION_COOKIE)
+    cookies.delete(ClerkTestMiddleware::COOKIE)
 
     redirect_back fallback_location: root_path, status: :see_other
   end

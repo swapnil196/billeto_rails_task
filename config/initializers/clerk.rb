@@ -1,25 +1,24 @@
 # frozen_string_literal: true
 
-Rails.configuration.to_prepare do
-  Rails.configuration.clerk_verifier =
-    if Rails.configuration.x.clerk.use_fake_verifier
-      Clerk::FakeVerifier.new
-    else
-      jwks_url =
-        ENV["CLERK_JWKS_URL"].presence ||
-        Rails.application.credentials.dig(:clerk, :jwks_url)
+Rails.application.config.to_prepare do
+  credentials = Rails.application.credentials
 
-      if jwks_url.present?
-        Clerk::SessionVerifier.new(
-          key_source: Clerk::JwksKeySource.new(jwks_url: jwks_url),
-          authorized_parties: Array(
-            ENV["CLERK_AUTHORIZED_PARTIES"]&.split(",") ||
-            Rails.application.credentials.dig(:clerk, :authorized_parties)
-          )
-        )
-      else
-        Rails.logger.info("[clerk] no JWKS url configured; using the fake verifier")
-        Clerk::FakeVerifier.new
-      end
-    end
+  publishable_key =
+    ENV["CLERK_PUBLISHABLE_KEY"].presence ||
+    credentials.dig(:clerk, :publishable_key)
+
+  secret_key =
+    ENV["CLERK_SECRET_KEY"].presence ||
+    credentials.dig(:clerk, :secret_key)
+
+  Clerk.configure do |config|
+    config.publishable_key = publishable_key if publishable_key.present?
+    config.secret_key = secret_key if secret_key.present?
+  end
+
+  # Handy in views for mounting Clerk's own components.
+  Rails.configuration.x.clerk.publishable_key = publishable_key
+  Rails.configuration.x.clerk.frontend_api =
+    ENV["CLERK_FRONTEND_API"].presence ||
+    credentials.dig(:clerk, :frontend_api)
 end

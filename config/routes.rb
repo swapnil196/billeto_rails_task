@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     delete "dev-session" => "dev_sessions#destroy"
   end
 
+  get "sign-in"  => "sessions#new",     as: :sign_in
+  get "sign-up"  => "sessions#sign_up",  as: :sign_up
+
   root "events#index"
 
   resources :events, only: :index, param: :tid

@@ -7,13 +7,13 @@ RSpec.describe "Dev sessions", type: :request do
     post dev_session_path, params: { user_id: "user_abc" }
 
     expect(response).to have_http_status(:see_other)
-    expect(cookies[Authentication::SESSION_COOKIE]).to eq("user_abc")
+    expect(cookies[ClerkTestMiddleware::COOKIE]).to eq("user_abc")
   end
 
   it "invents a user id when none is given" do
     post dev_session_path
 
-    expect(cookies[Authentication::SESSION_COOKIE]).to match(/\Auser_[0-9a-f]+\z/)
+    expect(cookies[ClerkTestMiddleware::COOKIE]).to match(/\Auser_[0-9a-f]+\z/)
   end
 
   it "signs out again" do
@@ -21,6 +21,6 @@ RSpec.describe "Dev sessions", type: :request do
 
     delete dev_session_path
 
-    expect(cookies[Authentication::SESSION_COOKIE]).to be_blank
+    expect(cookies[ClerkTestMiddleware::COOKIE]).to be_blank
   end
 end
