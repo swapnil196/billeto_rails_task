@@ -52,7 +52,7 @@ gem "bootsnap", require: false
 group :development, :test do
   # Specs. RSpec over Minitest purely for the `have_published` matchers that
   # ship with rails_event_store's RSpec integration.
-  gem "rspec-rails", "~> 7.1"
+  gem "rspec-rails", "~> 8.0"
   gem "factory_bot_rails", "~> 6.4"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
