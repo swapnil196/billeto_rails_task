@@ -19,8 +19,17 @@ external integrations fall back to fixture-backed fakes, so the suite runs
 without a key or a network connection.
 
 ```bash
-bin/rails server          # http://localhost:3000
-bundle exec sidekiq       # needed for vote counts to update
+bin/dev                   # http://localhost:3000 — web and worker together
+```
+
+**Start the worker, not just the server.** Vote counts are maintained by a
+background handler, so `bin/rails server` on its own makes voting look broken:
+the vote is recorded and the fact is published, but nothing drains the queue
+and the count never moves. `bin/dev` runs both. Separately, if you prefer:
+
+```bash
+bin/rails server
+bundle exec sidekiq -q default -q low
 ```
 
 Import events (the captured fixture without a key, the live API with one):

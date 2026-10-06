@@ -19,7 +19,9 @@ module Voting
     validates :direction, inclusion: { in: DIRECTIONS, message: "must be up or down" }
 
     def call
-      existing = Ballot.lock.find_by(event_tid: event_tid, user_id: user_id)
+      serialise_voter!
+
+      existing = Ballot.find_by(event_tid: event_tid, user_id: user_id)
 
       return cast if existing.nil?
       return withdraw(existing) if existing.direction == direction
@@ -28,6 +30,28 @@ module Voting
     end
 
     private
+
+    # A row lock cannot serialise a vote that does not exist yet. `SELECT ...
+    # FOR UPDATE` on a missing row locks nothing, so two concurrent first
+    # clicks both read "no existing vote", both insert, and one of them hits
+    # the unique index as an unhandled error -- after having published a fact
+    # that cannot be taken back.
+    #
+    # An advisory lock keyed on the (event, voter) pair serialises them whether
+    # or not a row exists. It is transaction-scoped, and the command bus wraps
+    # every command in a transaction, so it is released the moment this command
+    # finishes either way.
+    def serialise_voter!
+      ApplicationRecord.connection.execute(
+        ApplicationRecord.sanitize_sql_array(
+          [ "SELECT pg_advisory_xact_lock(hashtextextended(?, 0))", lock_key ]
+        )
+      )
+    end
+
+    def lock_key
+      "voting.cast_vote:#{event_tid}:#{user_id}"
+    end
 
     def cast
       Ballot.create!(event_tid: event_tid, user_id: user_id, direction: direction)

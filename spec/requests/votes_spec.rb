@@ -76,6 +76,22 @@ RSpec.describe "Voting", type: :request do
     end
   end
 
+  describe "when the database refuses a duplicate anyway" do
+    before { sign_in }
+
+    # The advisory lock should prevent this reaching the controller. If it ever
+    # does, a duplicate click is not worth a 500.
+    it "answers a collision with a flash rather than an error" do
+      allow(Rails.configuration.command_bus).to receive(:call)
+        .and_raise(ActiveRecord::RecordNotUnique.new("duplicate key"))
+
+      vote("up")
+
+      expect(response).to have_http_status(:see_other)
+      expect(flash[:alert]).to match(/could not be recorded/i)
+    end
+  end
+
   describe "the listing once votes are counted" do
     before do
       sign_in
