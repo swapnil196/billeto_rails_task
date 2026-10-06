@@ -26,7 +26,7 @@ gem "clerk-sdk-ruby", "~> 8.0", require: "clerk"
 
 # Background processing for event handlers, so side effects stay off the
 # request path.
-gem "sidekiq", "~> 7.3"
+gem "sidekiq", "~> 8.1"
 
 # Event sourcing. The whole voting feature is built on this.
 gem "rails_event_store", "~> 2.17"
