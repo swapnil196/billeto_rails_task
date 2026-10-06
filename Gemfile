@@ -29,7 +29,7 @@ gem "clerk-sdk-ruby", "~> 8.0", require: "clerk"
 gem "sidekiq", "~> 7.3"
 
 # Event sourcing. The whole voting feature is built on this.
-gem "rails_event_store", "~> 2.17"
+gem "rails_event_store", "~> 3.2"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
