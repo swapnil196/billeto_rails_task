@@ -9,7 +9,7 @@ gem "sprockets-rails"
 # Rails 7.2 still calls JSON.generate(..., quirks_mode: true), which json 3.x
 # removed; on json 3 every request that writes a session cookie raises
 # ArgumentError. Pinned until Rails supports json 3.
-gem "json", "~> 2.7"
+gem "json", "~> 3.0"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
