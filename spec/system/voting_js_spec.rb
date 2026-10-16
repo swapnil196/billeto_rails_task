@@ -2,10 +2,11 @@ require "rails_helper"
 
 # The same journey as voting_spec.rb, but driven through real headless Chrome.
 #
-# rack_test is a Rack client, not a browser: it does not run JavaScript and it
-# follows forms by hand. Turbo intercepts these form submissions in a real
-# browser, so this is the only pass that proves the flow actually works for a
-# person rather than for a Rack client.
+# rack_test is a Rack client, not a browser: it does not run JavaScript, and it
+# follows forms and redirects by hand rather than the way a browser does. This
+# app ships no JavaScript of its own -- voting is a plain form post and a 303 --
+# but Clerk's components are real scripts, and only a real browser proves the
+# page works for a person rather than for a Rack client.
 #
 # Tagged :js, which the Capybara support file maps to headless Chrome.
 RSpec.describe "Voting in a real browser", :js, type: :system do
