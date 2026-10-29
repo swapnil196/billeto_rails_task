@@ -83,6 +83,28 @@ to get right:
 
 Subscriptions are registered in `lib/application_subscriptions.rb`.
 
+## Inspecting the event log
+
+Rails Event Store ships a read-only browser, mounted in development only:
+
+```
+http://localhost:3000/res
+```
+
+It lists every stream and every fact. Opening one shows its payload, its
+metadata (the originating command, correlation id, request id) and the streams
+it belongs to — so the three-stream linking and the correlation trail are both
+visible rather than having to be taken on trust.
+
+From the terminal:
+
+```bash
+bin/rails voting:history                      # the whole vote stream
+bin/rails voting:history EVENT_TID=evt_...    # one event's history
+bin/rails voting:history USER=user_...        # one person's voting history
+```
+
+
 ## Structure
 
 ```

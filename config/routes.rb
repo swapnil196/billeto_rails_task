@@ -1,4 +1,10 @@
+# The event store browser ships with rails_event_store. It is read-only, but it
+# exposes every fact and every payload, so it is mounted in development only.
+require "rails_event_store/browser" if Rails.env.development?
+
 Rails.application.routes.draw do
+  mount RailsEventStore::Browser => "/res" if Rails.env.development?
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
