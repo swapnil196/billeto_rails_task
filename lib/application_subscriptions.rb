@@ -11,7 +11,8 @@ class ApplicationSubscriptions
     [
       Catalog.subscriptions,
       Voting.subscriptions,
-      ReadModels::EventVoteTally.subscriptions
+      ReadModels::EventVoteTally.subscriptions,
+      ReadModels::EventVoters.subscriptions
     ].reduce({}) { |merged, subscriptions| merge(merged, subscriptions) }
   end
 

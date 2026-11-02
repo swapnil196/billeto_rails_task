@@ -142,3 +142,33 @@ code {
 
 .clerk-mount { display: flex; justify-content: center; padding: 1rem 0 3rem; }
 .session a.btn { text-decoration: none; }
+
+.voters { margin: .5rem 0 0; display: flex; flex-direction: column; gap: .3rem; }
+
+.voters__row {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .35rem;
+  font-size: .8rem;
+}
+
+.voters__label { color: var(--muted); text-transform: uppercase; letter-spacing: .04em; font-size: .7rem; }
+.voters__label--off { color: #b45309; }
+
+.voters__id {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .35rem;
+  padding: .12rem .4rem;
+  border: 1px solid var(--line);
+  border-radius: .25rem;
+  background: #f9fafb;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .75rem;
+  word-break: break-all;
+}
+
+.voters__id--off { border-color: #fcd9a4; background: #fffbeb; color: #92400e; text-decoration: line-through; }
+.voters__note { display: inline-block; font-family: inherit; font-size: .68rem; color: #b45309; text-decoration: none; }

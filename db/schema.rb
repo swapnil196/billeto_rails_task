@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_10_02_070049) do
+ActiveRecord::Schema[7.2].define(version: 2026_11_02_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,17 @@ ActiveRecord::Schema[7.2].define(version: 2026_10_02_070049) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["event_tid"], name: "index_event_vote_tallies_on_event_tid", unique: true
+  end
+
+  create_table "event_voters", force: :cascade do |t|
+    t.string "event_tid", null: false
+    t.string "user_id", null: false
+    t.string "direction"
+    t.boolean "ever_upvoted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_tid", "user_id"], name: "index_event_voters_on_event_tid_and_user_id", unique: true
+    t.index ["event_tid"], name: "index_event_voters_on_event_tid"
   end
 
   create_table "events", force: :cascade do |t|

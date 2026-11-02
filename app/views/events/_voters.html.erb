@@ -1,0 +1,31 @@
+<%
+  voters = @voters.fetch(event.tid, [])
+  liking = voters.select(&:liking?)
+  lapsed = voters.select(&:lapsed?)
+%>
+<% if liking.any? || lapsed.any? %>
+  <div class="voters">
+    <% if liking.any? %>
+      <p class="voters__row">
+        <span class="voters__label">Liked by</span>
+        <% liking.each do |voter| %>
+          <code class="voters__id"><%= voter.user_id %></code>
+        <% end %>
+      </p>
+    <% end %>
+
+    <% if lapsed.any? %>
+      <p class="voters__row">
+        <span class="voters__label voters__label--off">Vote taken off</span>
+        <% lapsed.each do |voter| %>
+          <code class="voters__id voters__id--off">
+            <%= voter.user_id %>
+            <span class="voters__note">
+              <%= voter.withdrawn? ? "removed it" : "now dislikes" %>
+            </span>
+          </code>
+        <% end %>
+      </p>
+    <% end %>
+  </div>
+<% end %>

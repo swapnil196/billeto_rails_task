@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     @events = Catalog::Event.upcoming.by_start_date.limit(PER_PAGE).to_a
 
     @tallies = tallies_for(@events)
+    @voters = voters_for(@events)
     @my_votes = my_votes_for(@events)
   end
 
@@ -16,6 +17,13 @@ class EventsController < ApplicationController
     ReadModels::EventVoteTally::Count
       .where(event_tid: events.map(&:tid))
       .index_by(&:event_tid)
+  end
+
+  def voters_for(events)
+    ReadModels::EventVoters::Voter
+      .where(event_tid: events.map(&:tid))
+      .order(:user_id)
+      .group_by(&:event_tid)
   end
 
   def my_votes_for(events)

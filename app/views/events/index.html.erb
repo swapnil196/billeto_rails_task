@@ -47,6 +47,8 @@
           <% if event.description.present? %>
             <p class="event__description"><%= truncate(event.description, length: 220, separator: " ") %></p>
           <% end %>
+
+          <%= render "events/voters", event: event %>
         </div>
 
         <%= render "events/vote", event: event %>
