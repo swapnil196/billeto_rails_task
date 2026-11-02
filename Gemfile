@@ -22,6 +22,11 @@ gem "clerk-sdk-ruby", "~> 8.0", require: "clerk"
 # request path.
 gem "sidekiq", "~> 7.3"
 
+# Sidekiq 7.3 calls TimedStack#pop with a positional timeout, which
+# connection_pool 3.0 made keyword-only. Its own requirement is unbounded, so
+# without this pin Bundler resolves a version that kills the scheduler thread.
+gem "connection_pool", "~> 2.5"
+
 # Event sourcing. The whole voting feature is built on this.
 gem "rails_event_store", "~> 2.17"
 
@@ -48,6 +53,7 @@ group :development, :test do
   # ship with rails_event_store's RSpec integration.
   gem "rspec-rails", "~> 7.1"
   gem "factory_bot_rails", "~> 6.4"
+  gem "pry", "~> 0.15.0"
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
